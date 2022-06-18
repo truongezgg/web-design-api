@@ -1,5 +1,6 @@
+import { error } from '$helpers/response';
 import { CategoryModel } from '$models/CategoryModel';
-import { CommonStatus } from '$types/enum';
+import { CommonStatus, ErrorCode } from '$types/enum';
 
 export interface ICreateCategory {
   name: string;
@@ -56,6 +57,7 @@ export interface IUpdateCategory {
 }
 export async function updateCategory(categoryId: string, params: IUpdateCategory) {
   const category = await CategoryModel.findOne({ _id: categoryId });
+  if (!category) throw error(ErrorCode.Not_Found);
 
   Object.assign(category, params);
 

@@ -1,5 +1,6 @@
+import { error } from '$helpers/response';
 import { PostModel } from '$models/PostModel';
-import { CommonStatus } from '$types/enum';
+import { CommonStatus, ErrorCode } from '$types/enum';
 
 export interface ICreatePost {
   category: string;
@@ -79,6 +80,7 @@ export interface IUpdatePost {
 }
 export async function updatePost(PostId: string, params: IUpdatePost) {
   const Post = await PostModel.findOne({ _id: PostId });
+  if (!Post) throw error(ErrorCode.Not_Found);
 
   Object.assign(Post, params);
 

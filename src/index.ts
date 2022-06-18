@@ -13,6 +13,7 @@ import userController from '$controllers/user.controller';
 import categoryController from '$controllers/category.controller';
 import postController from '$controllers/post.controller';
 import contactController from '$controllers/contact.controller';
+import configController from '$controllers/config.controller';
 const logger = log('Index');
 
 const app = express();
@@ -42,6 +43,7 @@ createMongoConnection()
     categoryController(app);
     postController(app);
     contactController(app);
+    configController(app);
 
     /* -------------------------------------------------------------------------- */
     /*                                 Run server                                 */

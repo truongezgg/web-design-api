@@ -9,14 +9,8 @@ export enum ErrorCode {
   User_Blocked = 'User_Blocked',
   Password_Incorrect = 'Password_Incorrect',
   User_Not_Found = 'User_Not_Found',
-  Max_Time_For_Retry_Link_Forgot_Password = 'Max_Time_For_Retry_Link_Forgot_Password',
-  Wallet_Connect_Not_Match_With_Account = 'Wallet_Connect_Not_Match_With_Account',
-  You_Are_Not_Owner_Of_This_Nft = 'You_Are_Not_Owner_Of_This_Nft',
-  You_Are_Owner_Of_This_Nft = 'You_Are_Owner_Of_This_Nft',
-  Not_Found_Nft = 'Not_Found_Nft',
-  Not_Found_Category = 'Not_Found_Category',
-  Nft_Not_Selling = 'Nft_Not_Selling',
   Wrong_Admin_Token = 'Wrong_Admin_Token',
+  Not_Found = 'Not_Found',
 }
 
 export enum TokenType {

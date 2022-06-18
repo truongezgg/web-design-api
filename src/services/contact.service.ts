@@ -1,5 +1,6 @@
+import { error } from '$helpers/response';
 import { ContactModel } from '$models/ContactModel';
-import { CommonStatus, ContactState } from '$types/enum';
+import { CommonStatus, ContactState, ErrorCode } from '$types/enum';
 
 export interface ICreateContact {
   name: string;
@@ -80,6 +81,7 @@ export interface IUpdateContact {
 }
 export async function updateContact(ContactId: string, params: IUpdateContact) {
   const Contact = await ContactModel.findOne({ _id: ContactId });
+  if (!Contact) throw error(ErrorCode.Not_Found);
 
   Object.assign(Contact, params);
 

@@ -14,6 +14,7 @@ import categoryController from '$controllers/category.controller';
 import postController from '$controllers/post.controller';
 import contactController from '$controllers/contact.controller';
 import configController from '$controllers/config.controller';
+import uploadController from '$controllers/upload.controller';
 const logger = log('Index');
 
 const app = express();
@@ -44,6 +45,7 @@ createMongoConnection()
     postController(app);
     contactController(app);
     configController(app);
+    uploadController(app);
 
     /* -------------------------------------------------------------------------- */
     /*                                 Run server                                 */

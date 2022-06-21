@@ -25,7 +25,7 @@ export const CategorySchema = new Schema({
 });
 
 CategorySchema.pre('save', function (next) {
-  this.updateAt = Date.now();
+  (this as any).updateAt = Date.now();
   next();
 });
 

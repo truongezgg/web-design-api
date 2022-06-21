@@ -27,7 +27,7 @@ export const ContactSchema = new Schema({
 });
 
 ContactSchema.pre('save', function (next) {
-  this.updateAt = Date.now();
+  (this as any).updateAt = Date.now();
   next();
 });
 

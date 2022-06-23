@@ -86,3 +86,11 @@ export async function updatePost(PostId: string, params: IUpdatePost) {
 
   await Post.save();
 }
+
+export async function getDetailPost(postId: string) {
+  const post = await PostModel.findOne({ _id: postId })
+    .populate('createdBy', '_id status name')
+    .populate('category', '_id name');
+
+  return post;
+}

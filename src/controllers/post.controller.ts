@@ -4,7 +4,13 @@ import { Express, Request, Response } from 'express';
 import { verifyAccessToken } from '$middlewares/auth.middleware';
 import { validate } from '$helpers/validate';
 import { assignPaging } from '$helpers/index';
-import { createPost, getListPost, IGetListPost, updatePost } from '$services/post.service';
+import {
+  createPost,
+  getDetailPost,
+  getListPost,
+  IGetListPost,
+  updatePost,
+} from '$services/post.service';
 import { createPostSchema, updatePostSchema } from '$validators/post';
 const logger = log('Post controller');
 
@@ -42,6 +48,16 @@ export default function postController(app: Express) {
         pageIndex: query.pageIndex,
         pageSize: query.pageSize,
       });
+    } catch (err) {
+      logger.error(err);
+      return fail(res, err);
+    }
+  });
+
+  app.get('/post/:postId', [], async (req: Request, res: Response) => {
+    try {
+      const results = await getDetailPost(req.params.postId);
+      return success(res, results, 200);
     } catch (err) {
       logger.error(err);
       return fail(res, err);

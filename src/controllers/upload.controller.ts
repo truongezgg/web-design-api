@@ -10,7 +10,7 @@ const logger = log('Upload controller');
 export default function uploadController(app: Express) {
   app.post(
     '/upload',
-    [verifyAccessToken, s3Upload.upload.array('files', 10)],
+    [verifyAccessToken, s3Upload.upload.array('files', 50)],
     async (req: Request, res: Response) => {
       try {
         let files = [];

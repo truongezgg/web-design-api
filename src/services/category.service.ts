@@ -72,8 +72,6 @@ export async function getDetailCategory(categoryId: string) {
     '_id status name'
   );
 
-  if (!category) throw error(ErrorCode.Not_Found);
-
   return category;
 }
 

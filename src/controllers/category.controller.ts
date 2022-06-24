@@ -58,7 +58,7 @@ export default function categoryController(app: Express) {
 
   app.get('/category/:categoryId', [], async (req: Request, res: Response) => {
     try {
-      const results = await getDetailCategory(req.params.category);
+      const results = await getDetailCategory(req.params.categoryId);
       return success(res, results, 200);
     } catch (err) {
       logger.error(err);

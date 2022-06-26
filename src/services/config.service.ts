@@ -24,3 +24,10 @@ export async function getConfig() {
     return acc;
   }, {});
 }
+
+export async function deleteConfig(key: string) {
+  const Config = await ConfigModel.findOne({ key });
+  if (!Config) throw error(ErrorCode.Not_Found);
+
+  return await Config.deleteOne();
+}

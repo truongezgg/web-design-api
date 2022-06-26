@@ -1,3 +1,5 @@
+import Ajv from 'ajv';
+
 export const createConfigSchema: AjvSchema = {
   type: 'object',
   required: ['key', 'value'],
@@ -24,6 +26,18 @@ export const updateConfigSchema: AjvSchema = {
     },
     value: {
       type: ['string', 'object'],
+    },
+  },
+};
+
+export const deleteConfigSchema: AjvSchema = {
+  type: 'object',
+  required: ['key'],
+  additionalProperties: false,
+  properties: {
+    key: {
+      type: 'string',
+      minLength: 1,
     },
   },
 };

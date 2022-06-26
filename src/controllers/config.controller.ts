@@ -45,7 +45,7 @@ export default function configController(app: Express) {
     }
   });
 
-  app.delete('/config', [verifyAccessToken], async (req: Request, res: Response) => {
+  app.put('/config', [verifyAccessToken], async (req: Request, res: Response) => {
     try {
       validate(deleteConfigSchema, req.body);
       const { key } = req.body;

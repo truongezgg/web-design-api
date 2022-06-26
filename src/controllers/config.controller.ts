@@ -3,8 +3,8 @@ import { fail, success } from '$helpers/response';
 import { Express, Request, Response } from 'express';
 import { verifyAccessToken } from '$middlewares/auth.middleware';
 import { validate } from '$helpers/validate';
-import { createConfig, getConfig, updateConfig } from '$services/config.service';
-import { createConfigSchema, updateConfigSchema } from '$validators/config';
+import { createConfig, deleteConfig, getConfig, updateConfig } from '$services/config.service';
+import { createConfigSchema, deleteConfigSchema, updateConfigSchema } from '$validators/config';
 const logger = log('Config controller');
 
 export default function configController(app: Express) {
@@ -43,5 +43,15 @@ export default function configController(app: Express) {
       logger.error(err);
       return fail(res, err);
     }
+  });
+
+  app.delete('/config', [verifyAccessToken], async (req: Request, res: Response) => {
+    try {
+      validate(deleteConfigSchema, req.body);
+      const { key } = req.body;
+
+      await deleteConfig(key);
+      return success(res);
+    } catch (error) {}
   });
 }

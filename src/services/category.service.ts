@@ -98,7 +98,6 @@ export async function getListPostByCategory(categoryId: string, params: IGetList
   }
 
   const totalItems = await countQueryBuilder.count();
-
   const results = await queryBuilder
     .sort({ createdAt: -1 })
     .skip(params.skip)

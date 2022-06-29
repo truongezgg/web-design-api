@@ -22,6 +22,7 @@ export interface IPost extends Document {
 export const PostSchema = new Schema({
   category: { type: mongoose.Types.ObjectId, ref: 'Category' },
   name: { type: String },
+  isDefault: { type: Number, default: CommonStatus.INACTIVE, required: false },
   avatar: { type: String },
   location: { type: String },
   area: { type: String },
@@ -34,6 +35,7 @@ export const PostSchema = new Schema({
   createdAt: { type: Number, default: Date.now },
   payload: { type: mongoose.Schema.Types.Mixed },
   images: [{ priority: { type: Number, default: 0 }, url: { type: String, required: true } }],
+  videos: [{ url: { type: String, required: false } }],
 });
 
 PostSchema.pre('save', function (next) {

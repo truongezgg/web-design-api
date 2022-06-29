@@ -20,6 +20,9 @@ export const createPostSchema: AjvSchema = {
       type: 'string',
       minLength: 1,
     },
+    isDefault: {
+      enum: [CommonStatus.ACTIVE, CommonStatus.INACTIVE],
+    },
     name: {
       type: 'string',
       minLength: 1,
@@ -77,6 +80,9 @@ export const updatePostSchema: AjvSchema = {
       type: 'string',
       minLength: 1,
     },
+    isDefault: {
+      enum: [CommonStatus.ACTIVE, CommonStatus.INACTIVE],
+    },
     name: {
       type: 'string',
       minLength: 1,
@@ -121,6 +127,17 @@ export const updatePostSchema: AjvSchema = {
           priority: {
             type: 'integer',
           },
+          url: { type: 'string', minLength: 1 },
+        },
+      },
+    },
+    videos: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['url'],
+        additionalProperties: false,
+        properties: {
           url: { type: 'string', minLength: 1 },
         },
       },

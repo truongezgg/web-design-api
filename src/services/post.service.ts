@@ -82,6 +82,7 @@ export interface IUpdatePost {
   location: string;
   area: string;
   design: string;
+  isDefault: CommonStatus;
   year: string;
   description: string;
   payload: { [key: string]: any };
@@ -94,17 +95,14 @@ export async function updatePost(PostId: string, params: IUpdatePost) {
   if (!Post) throw error(ErrorCode.Not_Found);
 
   Object.assign(Post, params);
-
   await Post.save();
 
-  if (!params?.status) {
-    const postCountCategory = await PostModel.countDocuments({
-      category: params.category,
-      status: CommonStatus.ACTIVE,
-    });
-    const Category = await CategoryModel.findOne({ _id: params.category });
-    await Category.update({ postCount: postCountCategory });
-  }
+  const postCountCategory = await PostModel.countDocuments({
+    category: Post.category,
+    status: CommonStatus.ACTIVE,
+  });
+  const Category = await CategoryModel.findOne({ _id: Post.category });
+  await Category.update({ postCount: postCountCategory });
 }
 
 export async function getDetailPost(postId: string) {

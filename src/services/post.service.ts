@@ -65,6 +65,10 @@ export async function getListPost(params: IGetListPost) {
     queryBuilder.where('name').regex(new RegExp(params.keyword, 'i'));
     countQueryBuilder.where('name').regex(new RegExp(params.keyword, 'i'));
   }
+  if (params.isDefault && params.isDefault.length) {
+    queryBuilder.where('isDefault').in(params.isDefault);
+    countQueryBuilder.where('isDefault').in(params.isDefault);
+  }
 
   const totalItems = await countQueryBuilder.count();
 

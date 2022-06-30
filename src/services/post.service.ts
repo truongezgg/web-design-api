@@ -42,6 +42,7 @@ export interface IGetListPost {
   status?: CommonStatus[];
   skip: number;
   categoryIds: string[];
+  isDefault?: CommonStatus[];
 }
 export async function getListPost(params: IGetListPost) {
   const queryBuilder = PostModel.find()

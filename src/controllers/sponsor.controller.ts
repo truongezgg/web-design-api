@@ -12,7 +12,7 @@ import {
   updateSponsor,
 } from '$services/sponsor.service';
 
-const logger = log('Post controller');
+const logger = log('Sponsor controller');
 
 export default function sponsorController(app: Express) {
   app.post('/sponsor', [verifyAccessToken], async (req: Request, res: Response) => {

@@ -26,9 +26,9 @@ export interface IGetListSponsor {
   skip: number;
 }
 export async function getListSponsor(params: IGetListSponsor) {
-  const queryBuilder = PostModel.find();
+  const queryBuilder = SponsorModel.find();
 
-  const countQueryBuilder = PostModel.find();
+  const countQueryBuilder = SponsorModel.find();
 
   if (params.status && params.status.length) {
     queryBuilder.where('status').in(params.status);

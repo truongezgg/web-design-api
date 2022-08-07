@@ -68,6 +68,17 @@ export const createPostSchema: AjvSchema = {
         },
       },
     },
+    videos: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['url'],
+        additionalProperties: false,
+        properties: {
+          url: { type: 'string', minLength: 1 },
+        },
+      },
+    },
   },
 };
 
